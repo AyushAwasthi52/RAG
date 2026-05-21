@@ -1,0 +1,5 @@
+Machine learning is a subset of artificial intelligence that focuses on the development of algorithms that allow computers to learn from and make predictions or decisions based on data. 
+    It involves training models on large datasets to recognize patterns and make informed decisions without being explicitly programmed for specific tasks.
+    Common machine learning algorithms include linear regression, decision trees, support vector machines, and neural networks.
+
+Transformers are a type of neural network architecture introduced in the "Attention is All You Need" paper by Vaswani et al. They rely on self-attention mechanisms to process sequences of data in parallel, making them highly efficient for tasks like natural language processing and machine translation. Transformers have become the foundation for modern large language models like GPT, BERT, and other state-of-the-art AI systems. The key innovation of transformers is their ability to learn long-range dependencies in data without the computational limitations of previous sequential architectures like RNNs and LSTMs.
