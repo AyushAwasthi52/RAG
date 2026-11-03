@@ -1,203 +1,168 @@
-# RAG Pipeline
 
-A sample Retrieval-Augmented Generation (RAG) pipeline built to understand how modern AI systems retrieve contextual information and use Large Language Models to generate more accurate and grounded responses.
+# RAG — Retrieval-Augmented Generation
 
-This project was created as a learning-focused implementation to explore the complete workflow behind document ingestion, embedding generation, vector search, context retrieval, and LLM-based response generation.
+**A notebook-based implementation exploring document ingestion, semantic retrieval, vector databases, and LLM-powered response generation.**
 
-The pipeline demonstrates how external knowledge can be integrated into AI systems to reduce hallucinations and improve contextual understanding.
+This project explores the core components of a Retrieval-Augmented Generation pipeline.
 
----
+The implementation demonstrates how documents can be loaded, divided into chunks, converted into embeddings, indexed in a vector store, and retrieved to provide contextual information to a language model.
 
-# 🚧 Project Status
+## Pipeline Architecture
 
-Learning project / experimental implementation.
+```text
+PDF / Text Documents
+        |
+        v
+Document Loading
+        |
+        v
+Text Chunking
+        |
+        v
+Embedding Generation
+        |
+        v
+ChromaDB Vector Store
+        |
+        v
+Semantic Retrieval
+        |
+        v
+Context Construction
+        |
+        v
+Gemini LLM
+        |
+        v
+Generated Response
+```
 
-Core RAG workflow implemented for understanding:
-- document ingestion,
-- embedding generation,
-- vector similarity search,
-- context retrieval,
-- and response generation.
+## Technology Stack
 
----
-
-## Features
-
-- Document ingestion pipeline
-- Text chunking
-- Embedding generation
-- Vector database integration
-- Semantic similarity search
-- Context-aware response generation
-- LLM integration
-- Query-based retrieval workflow
-
----
-
-## Tech Stack
-
-### Backend
+### Language
 - Python
 
-### AI & ML
-- LangChain
-- Gemini API / OpenAI API
+### Document Processing
+- LangChain document loaders
+- PyMuPDF
+- PyPDF
+
+### Embeddings
 - Sentence Transformers
+- all-MiniLM-L6-v2
 
 ### Vector Database
-- FAISS / ChromaDB
+- ChromaDB
 
-### Additional Tools
+### Language Model
+- Google Gemini API
+
+### Additional Libraries
 - NumPy
+- scikit-learn
 - Pandas
+- Python dotenv
 
----
+## Implemented Components
 
-## Purpose of the Project
+### Document Ingestion
+- Text document loading
+- PDF document loading
+- Directory-based document ingestion
+- Document metadata handling
 
-This project was built to understand:
-- Retrieval-Augmented Generation (RAG)
-- Embedding models
-- Vector databases
-- Semantic search systems
-- AI retrieval pipelines
-- Prompt augmentation
-- Context-aware LLM workflows
+### Text Processing
+- Recursive character text splitting
+- Configurable chunk size
+- Chunk overlap
 
----
+### Embedding Management
+- Sentence Transformer model loading
+- Batch embedding generation
+- Embedding dimension inspection
 
-## What is RAG?
+### Vector Storage
+- Persistent ChromaDB client
+- Collection management
+- Document and embedding storage
 
-Retrieval-Augmented Generation combines:
-1. Information Retrieval
-2. Large Language Models
+### Retrieval
+- Query embedding generation
+- Similarity-based retrieval
+- Top-K document retrieval
+- Similarity threshold filtering
+- Source metadata retrieval
 
-Instead of relying only on pretrained knowledge, the model retrieves relevant external information before generating a response.
+### Response Generation
+- Gemini integration
+- Context-aware prompts
+- Retrieved-context-based answer generation
 
-This helps:
-- reduce hallucinations,
-- improve factual accuracy,
-- and provide domain-specific contextual responses.
-
----
-
-## How It Works
-
-```text
-User Query
-      ↓
-Generate Query Embedding
-      ↓
-Search Vector Database
-      ↓
-Retrieve Relevant Context
-      ↓
-Pass Context to LLM
-      ↓
-Generate Grounded Response
-```
-
----
-
-## Pipeline Workflow
-
-### 1. Document Ingestion
-Documents are loaded into the pipeline and processed for indexing.
-
-### 2. Text Chunking
-Large documents are split into smaller chunks for efficient embedding and retrieval.
-
-### 3. Embedding Generation
-Each chunk is converted into vector embeddings using embedding models.
-
-### 4. Vector Storage
-Embeddings are stored inside a vector database for semantic similarity search.
-
-### 5. Retrieval
-Relevant chunks are retrieved based on similarity to the user query.
-
-### 6. Response Generation
-The retrieved context is passed into the LLM to generate grounded responses.
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/RAG-Pipeline.git
-```
-
-Move into the project directory:
-
-```bash
-cd RAG-Pipeline
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file:
-
-```env
-API_KEY=your_llm_api_key
-```
-
-Run the pipeline:
-
-```bash
-python main.py
-```
-
----
-
-## Project Structure
+## Repository Structure
 
 ```text
-RAG-Pipeline/
-│
+RAG/
 ├── data/
-├── embeddings/
-├── vectorstore/
-├── pipeline/
-├── utils/
+│   ├── pdf/
+│   ├── text_files/
+│   └── vector_store/
+│
+├── notebook/
+│   └── document.ipynb
+│
 ├── main.py
-├── requirements.txt
+├── pyproject.toml
 └── README.md
 ```
 
----
+## Setup
 
-## Learning Outcomes
+The project dependencies are declared in `pyproject.toml`.
 
-This project helped me understand:
-- RAG system architecture
-- Embedding workflows
-- Vector similarity search
-- Semantic retrieval systems
-- LLM context injection
-- AI pipeline orchestration
-- Knowledge-grounded AI systems
+Install using pip:
 
----
+```bash
+pip install -e .
+```
 
-## Future Improvements
+Configure your Gemini API key:
 
-- Hybrid search
+```env
+GEMINI_API_KEY=your_api_key
+```
+
+## Running the Project
+
+The current RAG implementation is in the notebook:
+
+```bash
+jupyter lab notebook/document.ipynb
+```
+
+Execute the notebook cells in order to load documents, generate embeddings, populate the vector store, retrieve relevant chunks, and generate responses.
+
+**Note:** `main.py` is currently a placeholder and does not execute the RAG pipeline.
+
+## Current Limitations
+
+- The main Python entry point is not implemented.
+- The pipeline is currently notebook-driven.
+- Retrieval evaluation and benchmarking are not yet established.
+- Retrieval confidence should not be interpreted as calibrated answer confidence.
+- Source citation and grounded-response verification need further development.
+
+## Future Work
+
+- Modular Python pipeline
+- Configurable document ingestion
+- Hybrid retrieval
 - Metadata filtering
-- Multi-document querying
+- Reranking
+- Retrieval evaluation
+- Grounded citations
 - Streaming responses
-- Reranking pipelines
-- Web-based interface
-- Advanced chunking strategies
-- Multi-modal RAG support
-
----
+- Automated tests
 
 ## License
 
-This project is open-source and available under the MIT License.
+See the repository license information.
